@@ -1,0 +1,22 @@
+[
+    {
+        "id": "1",
+        "nombre": "Creación Orden",
+        "path": "./template/crearOrden.html"
+    },
+    {
+        "id": "2",
+        "nombre": "Creación Orden",
+        "path": "./template/registro copy.html"
+    },
+    {
+        "id": "3",
+        "nombre": "Respuesta Seguimiento",
+        "path": "./template/respuestaCargada.html"
+    },
+    {
+        "id": "4",
+        "nombre": "Respuesta Pago",
+        "path": "./template/pagoRecibido.html"
+    }
+]

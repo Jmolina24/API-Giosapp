@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Orden de servicio</title>
+</head>
+
+<body>
+    <p><strong>👋 Hola, he generado una orden de servicio</strong></p>
+    <p><strong>{{ id_orden }}</strong></p>
+    <p><strong>🗓️ {{ fecha_entrega }} ⏰ </strong></p>
+    <p><strong>Tipo de orden: {{ nombre_tipo_orden }}</strong></p>
+    <p><strong>Sede-Cliente: {{ nombre_cliente_sede }} ({{ nombre_cliente }})</strong></p>
+    <p><strong>Dirección: {{ direccion_cliente_sede }}</strong></p>
+    <p><strong>Contacto: {{ contacto_cliente_sede }} {{ telefono_cliente_sede }}</strong></p>
+    <p><strong>📝 Detalle Servicio</strong></p>
+    <ul>
+        
+        <!-- Ciclo -->
+        <li>{{detalle_Completo}}</li>
+        
+    </ul>
+    {{detalle_Completo}}
+    <p><strong>Usuario Registra: {{ nombre_usuario_registra }}</strong></p>
+</body>
+
+</html>
