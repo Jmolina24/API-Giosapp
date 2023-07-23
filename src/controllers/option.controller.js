@@ -386,5 +386,25 @@ export const listScoreController = async (req, res) => {
     }
 }
 
+export const listarscoreserviciosasignadosController = async (req, res) => {
+    
+    const { idcliente , idclientesede ,idtercero } = req.query;
+    if (req.query && Object.keys(req.query).length != 3) {
+        return res.status(400).json({ codigo: "1", mensaje: 'Faltan los query params' });
+    }
+    try {
+        const pool = await getConnectionBD();
+        pool.execute(queriesOption.listarscoreserviciosasignados, [ idcliente , idclientesede ,idtercero], async function (err, rows, fields) {
+            if (err) { return res.status(511).send({ mensaje: "Error Query BD", codigo: "1", mensaje_bd: err }); }
+            res.status(200).send(rows[0]);
+            await pool.end();
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).send(error);
+    }
+}
+
+
 
 

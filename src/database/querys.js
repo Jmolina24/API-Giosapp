@@ -64,8 +64,7 @@ export const queriesOption = {
     listardetalleordensoporte: 'call sp_listar_detalle_orden_soporte(?,?,?)',
     listarterceroservicio: 'call sp_listar_tercero_servicio(?,?,?,?,?)',
     listarscorehome: 'call sp_listar_score_home(?,?,?)',
-    
-    
+    listarscoreserviciosasignados: 'call sp_listar_score_servicios_asignados (?,?,?)'
         
 };
 

@@ -5,7 +5,8 @@ import { listRolController, listUserController, listTipoDocumentosController, li
     listServiciosController, listUnidadMedidaController, listTipoTercerosController, listTipoSedesController, listOrdenesController, listOrdenesDetallesController, 
     listDetallesSoportesOrdenesController, 
     listTerceroServiciosController,
-    listScoreController} from '../controllers/option.controller';
+    listScoreController,
+    listarscoreserviciosasignadosController} from '../controllers/option.controller';
 
 
 const router = Router()
@@ -53,6 +54,8 @@ router.get('/list-terceros-servicios', verifyTokeAuth, listTerceroServiciosContr
 
 
 router.get('/list-score', verifyTokeAuth, listScoreController);
+
+router.get('/list-score-app', verifyTokeAuth, listarscoreserviciosasignadosController);
 
 
 
