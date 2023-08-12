@@ -233,11 +233,11 @@ export const ordenStatusController = async (req, res) => {
 
 
 export const ordenDetalleStatusController = async (req, res) => {
-    const { iddetalleorden, idusuarioregistra } = req.body;
+    const { iddetalleorden, observacion_tercero, idusuarioregistra } = req.body;
     const { estado } = req.params;
     try {
         const pool = await getConnectionBD();
-        pool.execute(queriesAdmin.activar_orden_detalle, [iddetalleorden, estado, idusuarioregistra], async function (err, rows, fields) {
+        pool.execute(queriesAdmin.activar_orden_detalle, [iddetalleorden, estado, observacion_tercero, idusuarioregistra], async function (err, rows, fields) {
             if (err) { return res.status(511).send({ mensaje: "Error Query BD", codigo: "1", mensaje_bd: err }); }
             const result = rows[0][0];
             switch (result.codigo) {

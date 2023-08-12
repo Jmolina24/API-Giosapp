@@ -11,7 +11,7 @@ export const queriesAdmin = {
     activar_unidad_medida: 'call sp_activar_unidad_medida(?,?,?)',
     activar_servicio: 'call sp_activar_servicio(?,?,?)',
     activar_orden: 'call sp_actualizar_estado_orden(?,?,?)',
-    activar_orden_detalle: 'call sp_actualizar_estado_detalleorden(?,?,?)',
+    activar_orden_detalle: 'call sp_actualizar_estado_detalleorden(?,?,?,?)',
     activar_tiposervicio: 'call sp_activar_tiposervicio(?,?,?)',
     activar_terceroservicio: 'call sp_activar_tercero_servicio(?,?,?)',
     
