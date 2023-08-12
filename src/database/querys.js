@@ -28,17 +28,10 @@ export const queriesAdmin = {
     admin_servicio: 'call sp_admin_servicio(?,?,?,?,?,?,?)',
 
     admin_orden: 'call sp_admin_orden(?,?,?,?,?,?,?)',
-    admin_detalleorden: 'call sp_admin_detalleorden(?,?,?,?,?,?,?)',
+    admin_detalleorden: 'call sp_admin_detalleorden(?,?,?,?,?,?,?,?)',
     admin_tiposervicio: 'call sp_admin_tiposervicio(?,?,?,?)',
-    
-
     admin_terceroservicio: 'call sp_admin_tercero_servicio(?,?,?,?,?,?,?)',
-
-
     asgina_tercerodetalleorden: 'call sp_asigna_tercero_detalleorden(?,?,?,?)',
-    
-    
-    
 
 };
 

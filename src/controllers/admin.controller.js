@@ -655,10 +655,11 @@ export const createOrdenController = async (req, res) => {
 };
 
 export const createOrdenDetalleController = async (req, res) => {
-    const { iddetalleorden, idorden, idservicio, cantidad, referencia, observacion, idusuarioregistra } = req.body
+    const { iddetalleorden, idorden, idservicio, cantidad, referencia, observacion, soporte, idusuarioregistra } = req.body
+    
     try {
         const pool = await getConnectionBD();
-        pool.execute(queriesAdmin.admin_detalleorden, [iddetalleorden, idorden, idservicio, cantidad, referencia, observacion, idusuarioregistra], async function (err, rows, fields) {
+        pool.execute(queriesAdmin.admin_detalleorden, [iddetalleorden, idorden, idservicio, cantidad, referencia, observacion, soporte, idusuarioregistra], async function (err, rows, fields) {
             if (err) {
                 return res.status(511).send({ mensaje: "Error Query BD", codigo: "1", mensaje_bd: err });
             }
