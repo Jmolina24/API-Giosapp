@@ -2,6 +2,11 @@ export const queriesLogin = {
     sign: 'call sp_login_users(?,?)',
 };
 
+
+export const queriesReportes = {
+    reporte_servicio: 'call sp_reporte_servicio(?,?,?,?,?,?,?)',
+};
+
 export const queriesAdmin = {
     activar_rol: 'call sp_activar_rol(?,?,?)',
     activar_usuario: 'call sp_activar_usuario(?,?,?)',
@@ -58,7 +63,6 @@ export const queriesOption = {
     listarterceroservicio: 'call sp_listar_tercero_servicio(?,?,?,?,?)',
     listarscorehome: 'call sp_listar_score_home(?,?,?)',
     listarscoreserviciosasignados: 'call sp_listar_score_servicios_asignados (?,?,?)'
-        
 };
 
 export const queriesUpload = {

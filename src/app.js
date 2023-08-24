@@ -6,6 +6,7 @@ import loginRouter from './routes/login.routes';
 import adminRouter from './routes/admin.routes';
 import optionRouter from './routes/option.routes';
 import uploadRouter from './routes/upload.routes';
+import reportRouter from './routes/report.routes';
 
 
 const cors = require('cors');
@@ -25,7 +26,8 @@ app.use(indexRouter);
 app.use('/api/v1/login', loginRouter);
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/option', optionRouter);
-
 app.use('/api/v1/upload', uploadRouter);
+app.use('/api/v1/report', reportRouter);
+
 
 export default app
