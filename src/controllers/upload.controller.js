@@ -24,7 +24,7 @@ export const updateController = async (req, res) => {
             const uuid = uuidv4();
             const serverFilename = `${uuid}${extension}`;
             const readStream = fs.createReadStream(file.path);
-            var remotoDirFTP = `/web/ftp_demo/OrdenesServicio/` + serverFilename;
+            var remotoDirFTP = `/web/soportes/OrdenesServicio/` + serverFilename;
             ftp.put(readStream, remotoDirFTP, (err) => {
                 if (err) {
                     console.log('Error al subir el archivo', err);

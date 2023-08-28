@@ -4,9 +4,9 @@ export async function getConnectionFTP() {
     try {
         const ftpClient = new Client();
         ftpClient.connect({
-            host: 'demo.mainsoft.technology',
-            user: 'mainsoftdemo',
-            password: 'dgduNL3JvS#5U'
+            host: 'http://giosapp.mipresapp.co',
+            user: 'sumneg_giosapp',
+            password: 'zTRhrVrN5!3'
         });
         return ftpClient;
     } catch (error) {
