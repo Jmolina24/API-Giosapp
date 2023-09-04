@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "02eb6a8a-075d-48f3-8d02-8ec524404327",
+		"name": "API BBVA - Expirian",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4546084",
+		"_collection_link": "https://winter-flare-874200.postman.co/workspace/API-BBVA~7c2477a8-b9b5-4c1d-9351-3ab096443f91/collection/4546084-02eb6a8a-075d-48f3-8d02-8ec524404327?action=share&source=collection_link&creator=4546084"
+	},
+	"item": [
+		{
+			"name": "GT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"postman.setGlobalVariable(\"tsecPruebasExprian\",postman.getResponseHeader(\"tsec\"))"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"authentication\": {\r\n        \"userID\": \"ZM12060\",\r\n        \"consumerID\": \"12000060\",\r\n        \"authenticationType\": \"04\",\r\n        \"authenticationData\": [\r\n            {\r\n                \"idAuthenticationData\": \"password\",\r\n                \"authenticationData\": [\r\n                    \"NDk0ODYzNjM5Zjdl\"\r\n                ]\r\n            }\r\n        ]\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://asodev.openmarket.bbva.com.co/cptv_sv/TechArchitecture/co/grantingTicket/V02",
+					"protocol": "https",
+					"host": [
+						"asodev",
+						"openmarket",
+						"bbva",
+						"com",
+						"co"
+					],
+					"path": [
+						"cptv_sv",
+						"TechArchitecture",
+						"co",
+						"grantingTicket",
+						"V02"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Experian",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "tsec",
+						"value": "{{tsecPruebasExprian}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"identityDocument\": {\r\n          \"documentType\": {\r\n               \"id\": \"CC\"\r\n          },\r\n          \"documentNumber\": \"292204\"\r\n     },\r\n     \"lastName\": \"PEREZ\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://asodev.openmarket.bbva.com.co/cptv_sv/risks/v0/recognize-person",
+					"protocol": "https",
+					"host": [
+						"asodev",
+						"openmarket",
+						"bbva",
+						"com",
+						"co"
+					],
+					"path": [
+						"cptv_sv",
+						"risks",
+						"v0",
+						"recognize-person"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
