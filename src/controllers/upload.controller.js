@@ -10,13 +10,10 @@ export const updateController = async (req, res) => {
         return res.status(400).json({ codigo: 1, mensaje: 'Se Debe Cargar los documentos necesarios' });
     }
     const ftp = await getConnectionFTP();
-    // const currentDate = new Date();
-    // const year = currentDate.getFullYear();
-    // const month = currentDate.getMonth() + 1;
-    // console.log(currentDate);
-    // console.log(year);
-    // console.log(month);
-    // const remotePath = `/web/ftp_demo/OrdenesServicio/${year}/${month}`;
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1;
+    const remotePath = `/web/soportes/OrdenesServicio/${year}/${month}/`;
     ftp.on('ready', () => {
         console.log('Conectado al servidor FTP');
         const uploadFile = (file, callback) => {
@@ -24,7 +21,8 @@ export const updateController = async (req, res) => {
             const uuid = uuidv4();
             const serverFilename = `${uuid}${extension}`;
             const readStream = fs.createReadStream(file.path);
-            var remotoDirFTP = `/web/soportes/OrdenesServicio/` + serverFilename;
+            var remotoDirFTP = remotePath + serverFilename;
+            console.log(remotoDirFTP);
             ftp.put(readStream, remotoDirFTP, (err) => {
                 if (err) {
                     console.log('Error al subir el archivo', err);
