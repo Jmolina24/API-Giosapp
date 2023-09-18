@@ -72,4 +72,8 @@ export const queriesUpload = {
         
 };
 
+export const queriesBotWapp = {
+    login_boot_users: 'call sp_login_boot_users(?)',
+    listar_servicio_boot: 'call sp_listar_servicio_boot(?)',        
+};
 

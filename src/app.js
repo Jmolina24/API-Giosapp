@@ -7,6 +7,8 @@ import adminRouter from './routes/admin.routes';
 import optionRouter from './routes/option.routes';
 import uploadRouter from './routes/upload.routes';
 import reportRouter from './routes/report.routes';
+import botWappRouter from './routes/botwapp.routes';
+
 
 
 const cors = require('cors');
@@ -28,6 +30,7 @@ app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/option', optionRouter);
 app.use('/api/v1/upload', uploadRouter);
 app.use('/api/v1/report', reportRouter);
+app.use('/api/v1/botWapp', botWappRouter);
 
 
 export default app
