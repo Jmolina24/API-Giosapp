@@ -6,7 +6,7 @@ const router = Router()
 
 
 
-router.post('/login_boot', loginBootController);
+router.get('/login_boot/:documento', loginBootController);
 
 
 router.get('/listar_servicio/:servicio',  listServicioBotController);
