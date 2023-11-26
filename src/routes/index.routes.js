@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const nodemailer = require('nodemailer');
+const { verifyTokeAuth } = require('../middleware/tokeAuth');
 import config from '../config';
 const router = Router();
 
@@ -18,100 +20,40 @@ router.get('/api/v1/', (req, res) => {
 })
 
 
-router.get('/api/v1/lit-elemt', (req, res) => {
-  const people = [
-    {
-      id: 1,
-      name: 'Calvin Hawkins',
-      email: 'calvin.hawkins@example.com',
-      phone: '1-770-736-8031',
-      website: 'hildegard.org',
-      image:
-        'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-      id: 2,
-      name: 'Kristen Ramos',
-      email: 'kristen.ramos@example.com',
-      phone: '010-692-6593',
-      website: 'hildegard.org',
-      image:
-        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-      id: 3,
-      name: 'Ted Foxs',
-      email: 'ted.fox@example.com',
-      phone: '1-770-736-8031',
-      website: 'hildegard.org',
-      image:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-      id: 4,
-      name: 'Tedes Foxas',
-      email: 'ted.foxas@example.com',
-      phone: '151-770-736-8031',
-      website: 'awsgard.org',
-      image:
-        'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-      id: 5,
-      name: 'Ervin Howell',
-      email: 'Shanna@melissa.tv',
-      phone: '9-770-8031',
-      website: 'anastasia.net',
-      image:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-      id: 6,
-      name: 'Calvin Clean Hawkins',
-      email: 'calvin.hawkins@example.com',
-      phone: '1-770-736-8031',
-      website: 'hildegard.org',
-      image:
-        'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-      id: 7,
-      name: 'Kristen Medina Ramos',
-      email: 'kristen.ramos@example.com',
-      phone: '010-692-6593',
-      website: 'hildegard.org',
-      image:
-        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-      id: 8,
-      name: 'Edwin Fonseca',
-      email: 'ted.fonseca@example.com',
-      phone: '1-770-736-8031',
-      website: 'hildegard.org',
-      image:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-      id: 9,
-      name: 'Tedes Foxas Nuñez',
-      email: 'ted.foxas@example.com',
-      phone: '151-770-736-8031',
-      website: 'awsgard.fly.org',
-      image:
-        'https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    {
-      id: 10,
-      name: 'Ervin Howell Castro',
-      email: 'Shanna@melissa.tv',
-      phone: '9-770-8031',
-      website: 'anastasia.net',
-      image:
-        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    }
-  ]
-  res.json(people);
+router.post('/api/v1/send-email', verifyTokeAuth, (req, res) => {
+  const { to_email, to_email_copia, to_asunto, notificacion } = req.body;
+  const sendMail = nodemailer.createTransport({
+    host: config.hostPass,
+    port: config.portPass,
+    secure: true,
+    auth: { user: config.mailUser, pass: config.mailPass }
+  });
+
+
+  let mailOptions = {
+    from: `"Notificación " ${config.mailUser}`,
+    to: to_email,
+    bcc: `${to_email_copia}`,
+    subject: to_asunto,
+    html: notificacion
+  };
+
+
+  try {
+    sendMail.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.log(error);
+        const mensaje_smtp = 'Error al enviar el correo : ' + error;
+        res.status(400).json({ mensaje: error, mensaje_smtp, codigo: "1" })
+      } else {
+        const mensaje_smtp = 'El correo se envío correctamente : ' + info.response;
+        res.status(200).json({ mensaje: 'Correo Enviado Correctamente', mensaje_smtp, codigo: "0" })
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error de Servicios SMTP', codigo: "1" })
+  }
+
 })
 
 

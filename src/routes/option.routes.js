@@ -1,4 +1,5 @@
 const { verifyTokeAuth } = require('../middleware/tokeAuth');
+import mailer from '../middleware/sendMailRoutes';
 import { Router } from 'express';
 import { listRolController, listUserController, listTipoDocumentosController, listDepartamentosController, listCiudadController, listClientesController,
     listClientesSedesController, listTerceroController, listMotivoRechazoController, listTiposOrdenesController, listTiposServiciosController, 
@@ -56,7 +57,6 @@ router.get('/list-terceros-servicios', verifyTokeAuth, listTerceroServiciosContr
 router.get('/list-score', verifyTokeAuth, listScoreController);
 
 router.get('/list-score-app', verifyTokeAuth, listarscoreserviciosasignadosController);
-
 
 
 export default router;
